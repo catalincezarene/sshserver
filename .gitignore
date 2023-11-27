@@ -1,0 +1,9 @@
+*
+!/.dockerignore
+!/.github
+!/.github/**
+!/.gitignore
+!/docker-entrypoint.sh
+!/Dockerfile
+!/LICENSE
+!/README.md
