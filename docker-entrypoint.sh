@@ -7,6 +7,7 @@ pgid=${PGID:-1000}
 user_name=${USER_NAME:-dev}
 user_password=${USER_PASSWORD:-}
 authorized_keys=${AUTHORIZED_KEYS:-}
+docker_gid=${DOCKER_GID:-999}
 
 groupadd -g $pgid $user_name
 useradd -u $puid -g $pgid -s /bin/bash -m $user_name
@@ -24,6 +25,9 @@ chown -R $puid:$pgid "/home/${user_name}"
 
 usermod -aG sudo $user_name
 echo "${user_name} ALL=(ALL) NOPASSWD:ALL" | tee "/etc/sudoers.d/${user_name}" > /dev/null
+
+groupadd -g $docker_gid docker
+usermod -aG docker $user_name
 
 if [ -z "${1:-}" ]; then
     exec /usr/sbin/sshd -p "${port}" -D
