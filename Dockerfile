@@ -16,7 +16,8 @@ apt-get install -y --no-install-recommends \
     git \
     sudo \
     net-tools \
-    openssh-server
+    openssh-server \
+    iputils-ping
 
 # OpenSSH
 mkdir /var/run/sshd
